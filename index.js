@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 app.post("/send-email", async (req, res) => {
   const { name, email, message, siteName } = req.body;
 
-  if (!name || !email || !message || !siteName) {
+  if (!name || !email || !message || !siteName || !subtitle) {
     return res.status(400).json({ success: false, message: "Missing fields" });
   }
 
@@ -28,7 +28,7 @@ app.post("/send-email", async (req, res) => {
     .replace(/\n/g, "<br/>")
     .replace(/\s{2,}/g, " ");
 
-    const brand = siteName || "Portfolio Website";
+  const brand = siteName || "Portfolio Website";
 
   try {
     const transporter = nodemailer.createTransport({
@@ -56,7 +56,7 @@ app.post("/send-email", async (req, res) => {
         ${brand}
       </h1>
       <p style="color:#ccfbf1; margin:5px 0 0; font-size:14px;">
-        Digital Marketing Project Inquiry
+        ${subtitle}
       </p>
     </div>
 
@@ -103,7 +103,7 @@ app.post("/send-email", async (req, res) => {
     <!-- HEADER -->
     <div style="background:linear-gradient(135deg, #10b981, #14b8a6); padding:35px; text-align:center;">
       <h1 style="color:white; margin:0; font-size:26px;">${brand}</h1>
-      <p style="color:#ccfbf1; font-size:14px; margin-top:5px;">Data-Driven Marketing Specialist</p>
+      <p style="color:#ccfbf1; font-size:14px; margin-top:5px;">${subtitle}</p>
     </div>
 
     <!-- BODY -->
@@ -131,13 +131,13 @@ app.post("/send-email", async (req, res) => {
 
       <p style="color:#0f172a; margin-bottom:5px;">Best Regards,</p>
       <p style="color:#10b981; font-weight:bold; font-size:18px; margin:0;">Md Fuad Amir</p>
-      <p style="color:#64748b; font-size:13px; margin:0;">Digital Marketing Specialist</p>
+      <p style="color:#64748b; font-size:13px; margin:0;">MERN Stack</p>
 
     </div>
 
     <!-- FOOTER -->
     <div style="text-align:center; padding:20px; font-size:12px; color:#94a3b8; background:#f8fafc;">
-      © ${new Date().getFullYear()} Md Fuad Amir. Driving ROI through digital innovation.
+      © ${new Date().getFullYear()} Md Fuad Amir. MERN Stack Web Developer.
     </div>
   </div>
 </div>
