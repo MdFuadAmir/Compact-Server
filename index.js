@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 // email route
 app.post("/send-email", async (req, res) => {
-  const { name, email, message, siteName } = req.body;
+  const { name, email, message, siteName,subtitle } = req.body;
 
   if (!name || !email || !message || !siteName || !subtitle) {
     return res.status(400).json({ success: false, message: "Missing fields" });
